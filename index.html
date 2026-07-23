@@ -13,6 +13,8 @@
     content="Convite para o chá de bebê do Arthur"
   >
 
+  <meta name="theme-color" content="#dceef7">
+
   <title>Chá de Bebê do Arthur</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,6 +32,7 @@
       --azul: #3f89aa;
       --azul-claro: #dceef7;
       --azul-muito-claro: #f1f9fd;
+      --creme: #fffaf4;
       --branco: #ffffff;
       --texto: #31566a;
       --texto-claro: #6c8490;
@@ -46,6 +49,7 @@
 
     body {
       margin: 0;
+      overflow-x: hidden;
       color: var(--texto);
       background:
         radial-gradient(
@@ -61,6 +65,10 @@
         );
       font-family: "DM Sans", sans-serif;
       line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
     }
 
     a {
@@ -121,6 +129,7 @@
       color: var(--azul-escuro);
       font-size: clamp(32px, 5vw, 48px);
       line-height: 1.1;
+      letter-spacing: -1px;
     }
 
     .texto-principal {
@@ -146,7 +155,10 @@
       border-radius: 999px;
       font-weight: 700;
       text-decoration: none;
-      transition: 0.2s;
+      transition:
+        transform 0.2s,
+        background-color 0.2s,
+        box-shadow 0.2s;
     }
 
     .botao:hover {
@@ -205,6 +217,12 @@
       margin-bottom: 38px;
     }
 
+    .cabecalho-centralizado {
+      margin-right: auto;
+      margin-left: auto;
+      text-align: center;
+    }
+
     .detalhes {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -247,6 +265,10 @@
       color: var(--azul);
       font-weight: 700;
       text-decoration: none;
+    }
+
+    .mapa:hover {
+      text-decoration: underline;
     }
 
     .contagem-secao {
@@ -303,6 +325,79 @@
       text-transform: uppercase;
     }
 
+    /* Seção nova: bebê gamer */
+
+    .gamer {
+      padding: 55px;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 55px;
+      align-items: center;
+      border: 1px solid rgba(63, 137, 170, 0.14);
+      border-radius: 32px;
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(220, 238, 247, 0.9),
+          transparent 45%
+        ),
+        rgba(255, 255, 255, 0.9);
+      box-shadow: var(--sombra);
+    }
+
+    .gamer-imagem-container {
+      position: relative;
+      justify-self: center;
+    }
+
+    .gamer-imagem-container::before {
+      content: "🎮";
+      position: absolute;
+      top: -25px;
+      right: -25px;
+      width: 75px;
+      height: 75px;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      border: 5px solid white;
+      border-radius: 50%;
+      background: var(--azul-claro);
+      box-shadow: 0 12px 28px rgba(48, 105, 134, 0.18);
+      font-size: 34px;
+      transform: rotate(8deg);
+    }
+
+    .imagem-gamer {
+      width: min(100%, 440px);
+      display: block;
+      border: 8px solid white;
+      border-radius: 30px;
+      box-shadow: 0 20px 50px rgba(48, 105, 134, 0.16);
+    }
+
+    .gamer-texto p {
+      margin-bottom: 25px;
+      color: var(--texto-claro);
+      font-size: 18px;
+    }
+
+    .gamer-detalhes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .gamer-tag {
+      padding: 9px 15px;
+      border: 1px solid rgba(63, 137, 170, 0.15);
+      border-radius: 999px;
+      color: var(--azul-escuro);
+      background: var(--azul-muito-claro);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
     .presente {
       padding: 55px;
       display: grid;
@@ -310,7 +405,7 @@
       gap: 40px;
       align-items: center;
       border-radius: 30px;
-      background: #fffaf4;
+      background: var(--creme);
       box-shadow: 0 18px 45px rgba(80, 100, 110, 0.1);
     }
 
@@ -342,13 +437,6 @@
       max-width: 600px;
       margin: 0 auto 28px;
       color: var(--texto-claro);
-    }
-
-    .aviso {
-      margin-top: 16px;
-      display: block;
-      color: var(--texto-claro);
-      font-size: 13px;
     }
 
     footer {
@@ -391,6 +479,20 @@
         grid-template-columns: 1fr;
         text-align: center;
       }
+
+      .gamer {
+        padding: 42px 28px;
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .gamer-imagem-container {
+        width: min(100%, 450px);
+      }
+
+      .gamer-detalhes {
+        justify-content: center;
+      }
     }
 
     @media (max-width: 600px) {
@@ -416,7 +518,8 @@
         width: 100%;
       }
 
-      .imagem-convite {
+      .imagem-convite,
+      .imagem-gamer {
         border-width: 5px;
         border-radius: 22px;
       }
@@ -431,6 +534,20 @@
 
       .contagem {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gamer {
+        padding: 30px 18px;
+        gap: 35px;
+      }
+
+      .gamer-imagem-container::before {
+        top: -18px;
+        right: -8px;
+        width: 58px;
+        height: 58px;
+        border-width: 4px;
+        font-size: 25px;
       }
 
       .presente {
@@ -455,6 +572,8 @@
 
   <main>
 
+    <!-- Apresentação -->
+
     <section class="container hero">
 
       <div>
@@ -474,6 +593,7 @@
         </p>
 
         <div class="botoes">
+
           <a
             class="botao botao-principal"
             href="#confirmacao"
@@ -487,22 +607,28 @@
           >
             Ver detalhes
           </a>
+
         </div>
       </div>
 
       <div class="imagem-container">
+
         <img
           class="imagem-convite"
           src="convite-cha-bebe.png"
           alt="Convite do chá de bebê do Arthur"
         >
+
       </div>
 
     </section>
 
+    <!-- Detalhes -->
+
     <section id="detalhes" class="container secao">
 
       <div class="cabecalho-secao">
+
         <span class="etiqueta">
           Anote na agenda
         </span>
@@ -512,13 +638,16 @@
         </h2>
 
         <p>
-          Esperamos você para compartilhar conosco esse momento tão especial.
+          Esperamos você para compartilhar conosco
+          esse momento tão especial.
         </p>
+
       </div>
 
       <div class="detalhes">
 
         <article class="cartao">
+
           <div class="icone">📅</div>
 
           <h3>Data</h3>
@@ -526,9 +655,11 @@
           <p>
             18 de setembro de 2026
           </p>
+
         </article>
 
         <article class="cartao">
+
           <div class="icone">🕖</div>
 
           <h3>Horário</h3>
@@ -536,9 +667,11 @@
           <p>
             Às 19:00
           </p>
+
         </article>
 
         <article class="cartao">
+
           <div class="icone">📍</div>
 
           <h3>Local</h3>
@@ -548,6 +681,7 @@
             Av. Blumenau, 4309<br>
             Jardim Bela Vista
           </p>
+
         </article>
 
       </div>
@@ -556,17 +690,21 @@
         class="mapa"
         href="https://www.google.com/maps/search/?api=1&query=Av.+Blumenau,+4309,+Jardim+Bela+Vista"
         target="_blank"
+        rel="noopener noreferrer"
       >
         Abrir localização no Google Maps →
       </a>
 
     </section>
 
+    <!-- Contagem regressiva -->
+
     <section class="container">
 
       <div class="contagem-secao">
 
         <div>
+
           <span class="etiqueta">
             Está chegando
           </span>
@@ -578,6 +716,7 @@
           <p>
             Estamos ansiosos para celebrar esse momento com você.
           </p>
+
         </div>
 
         <div class="contagem">
@@ -608,11 +747,69 @@
 
     </section>
 
+    <!-- Bebê gamer -->
+
+    <section class="container secao">
+
+      <div class="gamer">
+
+        <div class="gamer-imagem-container">
+
+          <img
+            class="imagem-gamer"
+            src="bebegamer.png"
+            alt="Ilustração do Arthur como um bebê gamer"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="gamer-texto">
+
+          <span class="etiqueta">
+            Player 1 entrando na partida
+          </span>
+
+          <h2>
+            Nosso pequeno gamer
+          </h2>
+
+          <p>
+            O Arthur já está chegando para começar a maior
+            aventura de todas: uma vida cheia de amor,
+            descobertas, alegria e momentos inesquecíveis.
+          </p>
+
+          <div class="gamer-detalhes">
+
+            <span class="gamer-tag">
+              Player Arthur
+            </span>
+
+            <span class="gamer-tag">
+              Fase inicial
+            </span>
+
+            <span class="gamer-tag">
+              Amor infinito
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Sugestão de presente -->
+
     <section class="container secao">
 
       <div class="presente">
 
         <div>
+
           <span class="etiqueta">
             Sugestão de presente
           </span>
@@ -626,6 +823,7 @@
             na <strong>Tok Mágico Baby</strong> ou levar
             fraldas tamanho <strong>P ou M</strong>.
           </p>
+
         </div>
 
         <div class="presente-icone">
@@ -635,6 +833,8 @@
       </div>
 
     </section>
+
+    <!-- Confirmação -->
 
     <section
       id="confirmacao"
@@ -656,24 +856,14 @@
           confirmando sua presença pelo WhatsApp.
         </p>
 
-        <!--
-          Troque 55SEUNUMERO pelo seu número.
-
-          Exemplo:
-          5569999999999
-        -->
-
         <a
           class="botao botao-principal"
-          href="https://wa.me/69992012295?text=Olá!%20Confirmo%20minha%20presença%20no%20chá%20de%20bebê%20do%20Arthur."
+          href="https://wa.me/5569992012295?text=Olá!%20Confirmo%20minha%20presença%20no%20chá%20de%20bebê%20do%20Arthur."
           target="_blank"
+          rel="noopener noreferrer"
         >
           Confirmar pelo WhatsApp
         </a>
-
-        <small class="aviso">
-          Antes de publicar, coloque seu número no botão do WhatsApp.
-        </small>
 
       </div>
 
@@ -682,20 +872,19 @@
   </main>
 
   <footer>
+
     <p>
       Feito com carinho para celebrar a chegada do Arthur 💙
     </p>
+
   </footer>
 
   <script>
     /*
       Data do evento:
-
-      Ano: 2026
-      Mês: setembro
-      Dia: 18
+      18 de setembro de 2026
       Horário: 19:00
-      Fuso de Rondônia: -04:00
+      Fuso horário de Rondônia: -04:00
     */
 
     const dataEvento = new Date(
