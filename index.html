@@ -36,6 +36,7 @@
       --branco: #ffffff;
       --texto: #31566a;
       --texto-claro: #6c8490;
+      --verde-pix: #32a878;
       --sombra: 0 20px 50px rgba(48, 105, 134, 0.16);
     }
 
@@ -73,6 +74,10 @@
 
     a {
       color: inherit;
+    }
+
+    button {
+      font-family: inherit;
     }
 
     .container {
@@ -153,8 +158,10 @@
       justify-content: center;
       border: 1px solid transparent;
       border-radius: 999px;
+      font-size: 16px;
       font-weight: 700;
       text-decoration: none;
+      cursor: pointer;
       transition:
         transform 0.2s,
         background-color 0.2s,
@@ -215,12 +222,6 @@
     .cabecalho-secao {
       max-width: 650px;
       margin-bottom: 38px;
-    }
-
-    .cabecalho-centralizado {
-      margin-right: auto;
-      margin-left: auto;
-      text-align: center;
     }
 
     .detalhes {
@@ -325,7 +326,7 @@
       text-transform: uppercase;
     }
 
-    /* Seção nova: bebê gamer */
+    /* Bebê gamer */
 
     .gamer {
       padding: 55px;
@@ -398,6 +399,8 @@
       font-weight: 700;
     }
 
+    /* Presentes */
+
     .presente {
       padding: 55px;
       display: grid;
@@ -420,6 +423,120 @@
       font-size: 100px;
       transform: rotate(6deg);
     }
+
+    /* Pix */
+
+    .pix-card {
+      padding: 55px;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 55px;
+      align-items: center;
+      border: 1px solid rgba(50, 168, 120, 0.18);
+      border-radius: 32px;
+      background:
+        radial-gradient(
+          circle at bottom left,
+          rgba(50, 168, 120, 0.12),
+          transparent 42%
+        ),
+        linear-gradient(
+          145deg,
+          #f7fffb,
+          #ffffff
+        );
+      box-shadow: 0 20px 50px rgba(50, 120, 100, 0.12);
+    }
+
+    .pix-imagem-container {
+      justify-self: center;
+      text-align: center;
+    }
+
+    .pix-imagem {
+      width: min(100%, 330px);
+      display: block;
+      margin: 0 auto;
+      border: 10px solid white;
+      border-radius: 28px;
+      box-shadow: 0 18px 45px rgba(50, 120, 100, 0.16);
+    }
+
+    .pix-texto p {
+      color: var(--texto-claro);
+      font-size: 17px;
+    }
+
+    .pix-beneficiario {
+      margin: 24px 0 14px;
+      padding: 17px 20px;
+      border: 1px solid rgba(50, 168, 120, 0.18);
+      border-radius: 16px;
+      background: white;
+    }
+
+    .pix-beneficiario span {
+      display: block;
+      color: var(--texto-claro);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .pix-beneficiario strong {
+      display: block;
+      margin-top: 4px;
+      color: var(--azul-escuro);
+      font-size: 17px;
+    }
+
+    .chave-pix-container {
+      padding: 17px 20px;
+      border: 1px solid rgba(50, 168, 120, 0.18);
+      border-radius: 16px;
+      background: white;
+    }
+
+    .chave-pix-container span {
+      display: block;
+      color: var(--texto-claro);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .chave-pix {
+      margin-top: 4px;
+      display: block;
+      color: var(--azul-escuro);
+      font-size: 20px;
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    .botao-pix {
+      margin-top: 18px;
+      color: white;
+      background: var(--verde-pix);
+      box-shadow: 0 12px 28px rgba(50, 168, 120, 0.24);
+    }
+
+    .botao-pix:hover {
+      background: #278961;
+    }
+
+    .mensagem-copia {
+      min-height: 24px;
+      margin-top: 12px;
+      margin-bottom: 0;
+      color: var(--verde-pix) !important;
+      font-size: 14px !important;
+      font-weight: 700;
+    }
+
+    /* Confirmação */
 
     .confirmacao {
       padding: 55px;
@@ -493,6 +610,17 @@
       .gamer-detalhes {
         justify-content: center;
       }
+
+      .pix-card {
+        padding: 42px 28px;
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .pix-beneficiario,
+      .chave-pix-container {
+        text-align: left;
+      }
     }
 
     @media (max-width: 600px) {
@@ -561,6 +689,17 @@
         font-size: 80px;
       }
 
+      .pix-card {
+        padding: 30px 18px;
+        gap: 35px;
+      }
+
+      .pix-imagem {
+        width: min(100%, 280px);
+        border-width: 6px;
+        border-radius: 22px;
+      }
+
       .confirmacao {
         padding: 38px 22px;
       }
@@ -577,6 +716,7 @@
     <section class="container hero">
 
       <div>
+
         <span class="etiqueta">
           Você é nosso convidado especial
         </span>
@@ -609,6 +749,7 @@
           </a>
 
         </div>
+
       </div>
 
       <div class="imagem-container">
@@ -623,7 +764,7 @@
 
     </section>
 
-    <!-- Detalhes -->
+    <!-- Detalhes do encontro -->
 
     <section id="detalhes" class="container secao">
 
@@ -820,7 +961,7 @@
 
           <p>
             Você pode escolher um item da lista de presentes
-            ou levar
+            na <strong>Tok Mágico Baby</strong> ou levar
             fraldas tamanho <strong>P ou M</strong>.
           </p>
 
@@ -828,6 +969,91 @@
 
         <div class="presente-icone">
           🎁
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- Pix -->
+
+    <section class="container secao">
+
+      <div class="pix-card">
+
+        <div class="pix-imagem-container">
+
+          <img
+            class="pix-imagem"
+            src="pix.jpg"
+            alt="QR Code Pix para presentear o Arthur"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div class="pix-texto">
+
+          <span class="etiqueta">
+            Para quem está longe
+          </span>
+
+          <h2>
+            Quer presentear o Arthur?
+          </h2>
+
+          <p>
+            Para familiares e amigos que não poderão estar
+            presentes, mas desejam contribuir com um mimo para
+            o Arthur, deixamos abaixo nosso Pix.
+          </p>
+
+          <p>
+            Toda ajuda será recebida com muito carinho. 💙
+          </p>
+
+          <div class="pix-beneficiario">
+
+            <span>
+              Beneficiário
+            </span>
+
+            <strong>
+              THAINARA DA SILVA NOBRE
+            </strong>
+
+          </div>
+
+          <div class="chave-pix-container">
+
+            <span>
+              Chave Pix
+            </span>
+
+            <strong
+              id="chavePix"
+              class="chave-pix"
+            >
+              023.596.472-70
+            </strong>
+
+          </div>
+
+          <button
+            id="botaoCopiarPix"
+            class="botao botao-pix"
+            type="button"
+            onclick="copiarPix()"
+          >
+            Copiar chave Pix
+          </button>
+
+          <p
+            id="mensagemCopia"
+            class="mensagem-copia"
+            aria-live="polite"
+          ></p>
+
         </div>
 
       </div>
@@ -953,6 +1179,65 @@
     atualizarContagem();
 
     setInterval(atualizarContagem, 1000);
+
+    function copiarPix() {
+      const chavePix = "023.596.472-70";
+
+      const botao =
+        document.getElementById("botaoCopiarPix");
+
+      const mensagem =
+        document.getElementById("mensagemCopia");
+
+      function mostrarSucesso() {
+        botao.textContent = "Chave copiada! ✓";
+
+        mensagem.textContent =
+          "A chave Pix foi copiada para a área de transferência.";
+
+        setTimeout(() => {
+          botao.textContent = "Copiar chave Pix";
+          mensagem.textContent = "";
+        }, 3500);
+      }
+
+      function copiarDeFormaAlternativa() {
+        const campoTemporario =
+          document.createElement("textarea");
+
+        campoTemporario.value = chavePix;
+        campoTemporario.style.position = "fixed";
+        campoTemporario.style.opacity = "0";
+
+        document.body.appendChild(campoTemporario);
+
+        campoTemporario.focus();
+        campoTemporario.select();
+
+        try {
+          document.execCommand("copy");
+          mostrarSucesso();
+        } catch (erro) {
+          mensagem.textContent =
+            "Não foi possível copiar automaticamente. Chave: " +
+            chavePix;
+        }
+
+        document.body.removeChild(campoTemporario);
+      }
+
+      if (
+        navigator.clipboard &&
+        window.isSecureContext
+      ) {
+        navigator.clipboard
+          .writeText(chavePix)
+          .then(mostrarSucesso)
+          .catch(copiarDeFormaAlternativa);
+      } else {
+        copiarDeFormaAlternativa();
+      }
+    }
   </script>
 
 </body>
