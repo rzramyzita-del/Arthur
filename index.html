@@ -32,7 +32,6 @@
       --azul: #3f89aa;
       --azul-claro: #dceef7;
       --azul-muito-claro: #f1f9fd;
-      --creme: #fffaf4;
       --branco: #ffffff;
       --texto: #31566a;
       --texto-claro: #6c8490;
@@ -68,7 +67,8 @@
       line-height: 1.6;
     }
 
-    img {
+    img,
+    video {
       max-width: 100%;
     }
 
@@ -224,8 +224,19 @@
     /* Detalhes */
 
     .cabecalho-secao {
-      max-width: 650px;
+      max-width: 680px;
       margin-bottom: 38px;
+    }
+
+    .cabecalho-centralizado {
+      margin-right: auto;
+      margin-left: auto;
+      text-align: center;
+    }
+
+    .cabecalho-secao > p {
+      color: var(--texto-claro);
+      font-size: 18px;
     }
 
     .detalhes {
@@ -272,11 +283,7 @@
       text-decoration: none;
     }
 
-    .mapa:hover {
-      text-decoration: underline;
-    }
-
-    /* Contagem regressiva */
+    /* Contagem */
 
     .contagem-secao {
       padding: 60px;
@@ -332,6 +339,142 @@
       text-transform: uppercase;
     }
 
+    /* Galeria da gestação */
+
+    .jornada-card {
+      padding: 55px;
+      border: 1px solid rgba(63, 137, 170, 0.16);
+      border-radius: 32px;
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(220, 238, 247, 0.9),
+          transparent 40%
+        ),
+        linear-gradient(
+          145deg,
+          #ffffff,
+          #f5fbfe
+        );
+      box-shadow: var(--sombra);
+    }
+
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .midia-card {
+      position: relative;
+      min-height: 300px;
+      overflow: hidden;
+      border: 8px solid white;
+      border-radius: 25px;
+      background:
+        linear-gradient(
+          145deg,
+          var(--azul-muito-claro),
+          white
+        );
+      box-shadow: 0 18px 42px rgba(48, 105, 134, 0.13);
+    }
+
+    .midia-card img,
+    .midia-card video {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      display: block;
+      object-fit: cover;
+    }
+
+    .midia-card img {
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .midia-card img:hover {
+      transform: scale(1.025);
+    }
+
+    .midia-carregando {
+      min-height: 300px;
+      padding: 35px;
+      display: grid;
+      place-items: center;
+      color: var(--texto-claro);
+      text-align: center;
+    }
+
+    .midia-numero {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 3;
+      padding: 7px 13px;
+      border-radius: 999px;
+      color: white;
+      background: rgba(34, 88, 114, 0.82);
+      font-size: 13px;
+      font-weight: 700;
+      backdrop-filter: blur(8px);
+    }
+
+    .galeria-aviso {
+      max-width: 720px;
+      margin: 30px auto 0;
+      padding: 16px 20px;
+      border: 1px solid rgba(63, 137, 170, 0.16);
+      border-radius: 16px;
+      color: var(--texto-claro);
+      background: white;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* Janela de imagem ampliada */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      padding: 25px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(16, 38, 50, 0.92);
+    }
+
+    .modal.aberto {
+      display: flex;
+    }
+
+    .modal img {
+      max-width: min(1100px, 96vw);
+      max-height: 90vh;
+      border: 7px solid white;
+      border-radius: 22px;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+      object-fit: contain;
+    }
+
+    .modal-fechar {
+      position: fixed;
+      top: 18px;
+      right: 22px;
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 50%;
+      color: white;
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 29px;
+      cursor: pointer;
+    }
+
     /* Bebê gamer */
 
     .gamer {
@@ -348,7 +491,7 @@
           rgba(220, 238, 247, 0.9),
           transparent 45%
         ),
-        rgba(255, 255, 255, 0.9);
+        white;
       box-shadow: var(--sombra);
     }
 
@@ -358,7 +501,7 @@
     }
 
     .gamer-imagem-container::before {
-      content: "🎮";
+      content: "⌨️";
       position: absolute;
       top: -25px;
       right: -25px;
@@ -371,7 +514,7 @@
       border-radius: 50%;
       background: var(--azul-claro);
       box-shadow: 0 12px 28px rgba(48, 105, 134, 0.18);
-      font-size: 34px;
+      font-size: 31px;
       transform: rotate(8deg);
     }
 
@@ -405,23 +548,13 @@
       font-weight: 700;
     }
 
-    /* Lista de presentes */
+    /* Lista */
 
     .lista-presentes-card {
       padding: 55px;
       border: 1px solid rgba(63, 137, 170, 0.16);
       border-radius: 32px;
-      background:
-        radial-gradient(
-          circle at top left,
-          rgba(220, 238, 247, 0.9),
-          transparent 38%
-        ),
-        linear-gradient(
-          145deg,
-          #ffffff,
-          #f4fbfe
-        );
+      background: linear-gradient(145deg, #ffffff, #f4fbfe);
       box-shadow: var(--sombra);
     }
 
@@ -492,9 +625,7 @@
     .lista-botoes {
       margin-top: 28px;
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 14px;
     }
 
     .observacao-lista {
@@ -588,10 +719,6 @@
       box-shadow: 0 12px 28px rgba(50, 168, 120, 0.24);
     }
 
-    .botao-pix:hover {
-      background: #278961;
-    }
-
     .mensagem-copia {
       min-height: 24px;
       margin-top: 12px;
@@ -651,13 +778,6 @@
       margin-top: 7px;
       display: block;
       color: var(--texto-claro);
-      font-size: 13px;
-    }
-
-    .agradecimento-confirmacao {
-      margin-top: 18px !important;
-      margin-bottom: 0 !important;
-      font-size: 14px;
     }
 
     footer {
@@ -666,16 +786,18 @@
       color: var(--texto-claro);
     }
 
-    footer p {
-      margin-bottom: 0;
-    }
-
     @media (max-width: 850px) {
+      .hero,
+      .gamer,
+      .pix-card,
+      .contagem-secao {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
       .hero {
         min-height: auto;
         padding-top: 60px;
-        grid-template-columns: 1fr;
-        text-align: center;
       }
 
       .texto-principal {
@@ -683,42 +805,17 @@
         margin-left: auto;
       }
 
-      .botoes {
+      .botoes,
+      .gamer-detalhes {
         justify-content: center;
-      }
-
-      .imagem-container {
-        width: min(100%, 550px);
       }
 
       .detalhes {
         grid-template-columns: 1fr;
       }
 
-      .contagem-secao {
-        padding: 42px 28px;
+      .galeria {
         grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .gamer {
-        padding: 42px 28px;
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .gamer-imagem-container {
-        width: min(100%, 450px);
-      }
-
-      .gamer-detalhes {
-        justify-content: center;
-      }
-
-      .pix-card {
-        padding: 42px 28px;
-        grid-template-columns: 1fr;
-        text-align: center;
       }
 
       .pix-beneficiario,
@@ -732,9 +829,8 @@
         width: calc(100% - 22px);
       }
 
-      .hero {
-        gap: 42px;
-        padding-top: 45px;
+      .secao {
+        padding: 65px 0;
       }
 
       h1 {
@@ -750,40 +846,24 @@
         width: 100%;
       }
 
-      .imagem-convite,
-      .imagem-gamer {
-        border-width: 5px;
-        border-radius: 22px;
-      }
-
-      .secao {
-        padding: 65px 0;
-      }
-
-      .contagem-secao {
-        padding: 35px 18px;
+      .contagem-secao,
+      .gamer,
+      .pix-card,
+      .jornada-card,
+      .lista-presentes-card,
+      .confirmacao {
+        padding: 32px 18px;
       }
 
       .contagem {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .gamer {
-        padding: 30px 18px;
-        gap: 35px;
-      }
-
-      .gamer-imagem-container::before {
-        top: -18px;
-        right: -8px;
-        width: 58px;
-        height: 58px;
-        border-width: 4px;
-        font-size: 25px;
-      }
-
-      .lista-presentes-card {
-        padding: 34px 16px;
+      .midia-card,
+      .midia-card img,
+      .midia-card video,
+      .midia-carregando {
+        min-height: 220px;
       }
 
       .lista-avisos {
@@ -796,34 +876,11 @@
 
       .lista-imagem-container {
         padding: 6px;
-        border-radius: 18px;
       }
 
-      .lista-imagem {
-        border-radius: 14px;
-      }
-
-      .lista-botoes {
-        flex-direction: column;
-      }
-
-      .pix-card {
-        padding: 30px 18px;
-        gap: 35px;
-      }
-
-      .pix-imagem {
-        width: min(100%, 280px);
-        border-width: 6px;
-        border-radius: 22px;
-      }
-
-      .confirmacao {
-        padding: 38px 22px;
-      }
-
-      .prazo-confirmacao strong {
-        font-size: 21px;
+      .imagem-convite,
+      .imagem-gamer {
+        border-width: 5px;
       }
     }
   </style>
@@ -910,33 +967,19 @@
       <div class="detalhes">
 
         <article class="cartao">
-
           <div class="icone">📅</div>
-
           <h3>Data</h3>
-
-          <p>
-            18 de setembro de 2026
-          </p>
-
+          <p>18 de setembro de 2026</p>
         </article>
 
         <article class="cartao">
-
           <div class="icone">🕖</div>
-
           <h3>Horário</h3>
-
-          <p>
-            Às 19:00
-          </p>
-
+          <p>Às 19:00</p>
         </article>
 
         <article class="cartao">
-
           <div class="icone">📍</div>
-
           <h3>Local</h3>
 
           <p>
@@ -944,7 +987,6 @@
             Av. Blumenau, 4309<br>
             Jardim Bela Vista
           </p>
-
         </article>
 
       </div>
@@ -960,26 +1002,19 @@
 
     </section>
 
-    <!-- Contagem regressiva -->
+    <!-- Contagem -->
 
     <section class="container">
 
       <div class="contagem-secao">
 
         <div>
-
-          <span class="etiqueta">
-            Está chegando
-          </span>
-
-          <h2>
-            Contagem regressiva
-          </h2>
+          <span class="etiqueta">Está chegando</span>
+          <h2>Contagem regressiva</h2>
 
           <p>
             Estamos ansiosos para celebrar esse momento com você.
           </p>
-
         </div>
 
         <div class="contagem">
@@ -1010,6 +1045,44 @@
 
     </section>
 
+    <!-- Fotos e vídeos -->
+
+    <section class="container secao">
+
+      <div class="jornada-card">
+
+        <div class="cabecalho-secao cabecalho-centralizado">
+
+          <span class="etiqueta">
+            Nossa história
+          </span>
+
+          <h2>
+            Nossa jornada até o Arthur
+          </h2>
+
+          <p>
+            Cada imagem guarda um pedacinho da nossa história.
+            Reunimos alguns momentos especiais dessa espera
+            cheia de amor.
+          </p>
+
+        </div>
+
+        <div
+          id="galeria"
+          class="galeria"
+        ></div>
+
+        <p class="galeria-aviso">
+          Clique nas fotos para ampliá-las. Nos vídeos,
+          use os controles para reproduzir e colocar em tela cheia.
+        </p>
+
+      </div>
+
+    </section>
+
     <!-- Bebê gamer -->
 
     <section class="container secao">
@@ -1021,7 +1094,7 @@
           <img
             class="imagem-gamer"
             src="bebegamer.png"
-            alt="Ilustração do Arthur como um bebê gamer"
+            alt="Ilustração do Arthur como um bebê gamer de computador"
             loading="lazy"
           >
 
@@ -1044,19 +1117,9 @@
           </p>
 
           <div class="gamer-detalhes">
-
-            <span class="gamer-tag">
-              Player Arthur
-            </span>
-
-            <span class="gamer-tag">
-              Fase inicial
-            </span>
-
-            <span class="gamer-tag">
-              Amor infinito
-            </span>
-
+            <span class="gamer-tag">Player Arthur</span>
+            <span class="gamer-tag">Fase inicial</span>
+            <span class="gamer-tag">Amor infinito</span>
           </div>
 
         </div>
@@ -1065,7 +1128,7 @@
 
     </section>
 
-    <!-- Lista de presentes -->
+    <!-- Lista -->
 
     <section class="container secao">
 
@@ -1082,8 +1145,7 @@
           </h2>
 
           <p>
-            Preparamos esta lista apenas como uma sugestão
-            para quem desejar nos presentear.
+            Preparamos esta lista apenas como uma sugestão.
             Fique à vontade para escolher o item que preferir.
           </p>
 
@@ -1092,27 +1154,13 @@
         <div class="lista-avisos">
 
           <div class="lista-aviso lista-aviso-sugestao">
-
-            <span class="lista-aviso-icone">
-              💡
-            </span>
-
-            <span>
-              A lista é apenas uma sugestão
-            </span>
-
+            <span class="lista-aviso-icone">💡</span>
+            <span>A lista é apenas uma sugestão</span>
           </div>
 
           <div class="lista-aviso">
-
-            <span class="lista-aviso-icone">
-              ✓
-            </span>
-
-            <span>
-              Os itens marcados nós já temos
-            </span>
-
+            <span class="lista-aviso-icone">✓</span>
+            <span>Os itens marcados nós já temos</span>
           </div>
 
         </div>
@@ -1122,7 +1170,7 @@
           <img
             class="lista-imagem"
             src="listapresentes.png"
-            alt="Lista de sugestões de presentes para o Arthur. Os itens marcados já foram adquiridos."
+            alt="Lista de presentes para o Arthur"
             loading="lazy"
           >
 
@@ -1188,30 +1236,13 @@
           </p>
 
           <div class="pix-beneficiario">
-
-            <span>
-              Beneficiário
-            </span>
-
-            <strong>
-              THAINARA DA SILVA NOBRE
-            </strong>
-
+            <span>Beneficiário</span>
+            <strong>THAINARA DA SILVA NOBRE</strong>
           </div>
 
           <div class="chave-pix-container">
-
-            <span>
-              Chave Pix
-            </span>
-
-            <strong
-              id="chavePix"
-              class="chave-pix"
-            >
-              023.596.472-70
-            </strong>
-
+            <span>Chave Pix</span>
+            <strong class="chave-pix">023.596.472-70</strong>
           </div>
 
           <button
@@ -1254,25 +1285,16 @@
 
         <p>
           Para conseguirmos organizar tudo com muito carinho,
-          pedimos que confirme sua presença pelo WhatsApp
-          dentro do prazo indicado abaixo.
+          pedimos que confirme sua presença pelo WhatsApp.
         </p>
 
         <div class="prazo-confirmacao">
-
-          <span>
-            Prazo para confirmação
-          </span>
-
-          <strong>
-            Até 30 de agosto de 2026
-          </strong>
+          <span>Prazo para confirmação</span>
+          <strong>Até 30 de agosto de 2026</strong>
 
           <small>
-            Após essa data, talvez não seja possível incluir
-            novos convidados na organização do evento.
+            A confirmação dentro do prazo nos ajuda na organização.
           </small>
-
         </div>
 
         <a
@@ -1284,10 +1306,6 @@
           Confirmar pelo WhatsApp
         </a>
 
-        <p class="agradecimento-confirmacao">
-          Agradecemos por confirmar dentro do prazo. 💙
-        </p>
-
       </div>
 
     </section>
@@ -1295,80 +1313,277 @@
   </main>
 
   <footer>
-
     <p>
       Feito com carinho para celebrar a chegada do Arthur 💙
     </p>
-
   </footer>
+
+  <!-- Modal de fotos -->
+
+  <div
+    id="modalFoto"
+    class="modal"
+    onclick="fecharModal(event)"
+  >
+
+    <button
+      class="modal-fechar"
+      type="button"
+      onclick="fecharModal()"
+      aria-label="Fechar imagem"
+    >
+      ×
+    </button>
+
+    <img
+      id="modalImagem"
+      src=""
+      alt="Foto ampliada"
+    >
+
+  </div>
 
   <script>
     const dataEvento = new Date(
       "2026-09-18T19:00:00-04:00"
     );
 
-    const elementoDias =
-      document.getElementById("dias");
-
-    const elementoHoras =
-      document.getElementById("horas");
-
-    const elementoMinutos =
-      document.getElementById("minutos");
-
-    const elementoSegundos =
-      document.getElementById("segundos");
-
     function adicionarZero(numero) {
       return String(numero).padStart(2, "0");
     }
 
     function atualizarContagem() {
-      const agora = new Date();
-
       const diferenca =
-        dataEvento.getTime() - agora.getTime();
+        dataEvento.getTime() - new Date().getTime();
+
+      const elementos = {
+        dias: document.getElementById("dias"),
+        horas: document.getElementById("horas"),
+        minutos: document.getElementById("minutos"),
+        segundos: document.getElementById("segundos")
+      };
 
       if (diferenca <= 0) {
-        elementoDias.textContent = "00";
-        elementoHoras.textContent = "00";
-        elementoMinutos.textContent = "00";
-        elementoSegundos.textContent = "00";
+        Object.values(elementos).forEach(
+          elemento => elemento.textContent = "00"
+        );
+
         return;
       }
 
-      const dias = Math.floor(
-        diferenca / (1000 * 60 * 60 * 24)
+      elementos.dias.textContent = adicionarZero(
+        Math.floor(diferenca / (1000 * 60 * 60 * 24))
       );
 
-      const horas = Math.floor(
-        (diferenca / (1000 * 60 * 60)) % 24
+      elementos.horas.textContent = adicionarZero(
+        Math.floor((diferenca / (1000 * 60 * 60)) % 24)
       );
 
-      const minutos = Math.floor(
-        (diferenca / (1000 * 60)) % 60
+      elementos.minutos.textContent = adicionarZero(
+        Math.floor((diferenca / (1000 * 60)) % 60)
       );
 
-      const segundos = Math.floor(
-        (diferenca / 1000) % 60
+      elementos.segundos.textContent = adicionarZero(
+        Math.floor((diferenca / 1000) % 60)
       );
-
-      elementoDias.textContent =
-        adicionarZero(dias);
-
-      elementoHoras.textContent =
-        adicionarZero(horas);
-
-      elementoMinutos.textContent =
-        adicionarZero(minutos);
-
-      elementoSegundos.textContent =
-        adicionarZero(segundos);
     }
 
     atualizarContagem();
 
     setInterval(atualizarContagem, 1000);
+
+    /*
+      GALERIA AUTOMÁTICA
+
+      O sistema procura:
+      sequencia1 até sequencia6
+
+      Imagens:
+      jpg, jpeg, png e webp
+
+      Vídeos:
+      mp4, webm e mov
+    */
+
+    const quantidadeArquivos = 6;
+
+    const extensoesImagem = [
+      "jpg",
+      "jpeg",
+      "png",
+      "webp"
+    ];
+
+    const extensoesVideo = [
+      "mp4",
+      "webm",
+      "mov"
+    ];
+
+    const galeria =
+      document.getElementById("galeria");
+
+    function testarArquivo(caminho) {
+      return fetch(caminho, {
+        method: "HEAD",
+        cache: "no-store"
+      })
+      .then(resposta => resposta.ok)
+      .catch(() => false);
+    }
+
+    async function encontrarArquivo(numero) {
+      const nomeBase = "sequencia" + numero;
+
+      for (const extensao of extensoesImagem) {
+        const caminho = nomeBase + "." + extensao;
+
+        if (await testarArquivo(caminho)) {
+          return {
+            tipo: "imagem",
+            caminho: caminho
+          };
+        }
+      }
+
+      for (const extensao of extensoesVideo) {
+        const caminho = nomeBase + "." + extensao;
+
+        if (await testarArquivo(caminho)) {
+          return {
+            tipo: "video",
+            caminho: caminho,
+            extensao: extensao
+          };
+        }
+      }
+
+      return null;
+    }
+
+    async function carregarGaleria() {
+      for (
+        let numero = 1;
+        numero <= quantidadeArquivos;
+        numero++
+      ) {
+        const card = document.createElement("article");
+
+        card.className = "midia-card";
+
+        card.innerHTML = `
+          <span class="midia-numero">
+            Momento ${numero}
+          </span>
+
+          <div class="midia-carregando">
+            Carregando momento especial...
+          </div>
+        `;
+
+        galeria.appendChild(card);
+
+        const arquivo =
+          await encontrarArquivo(numero);
+
+        if (!arquivo) {
+          card.innerHTML = `
+            <span class="midia-numero">
+              Momento ${numero}
+            </span>
+
+            <div class="midia-carregando">
+              O arquivo sequencia${numero} não foi encontrado.
+              Confira o nome e a extensão no GitHub.
+            </div>
+          `;
+
+          continue;
+        }
+
+        if (arquivo.tipo === "imagem") {
+          card.innerHTML = `
+            <span class="midia-numero">
+              Momento ${numero}
+            </span>
+
+            <img
+              src="${arquivo.caminho}"
+              alt="Momento ${numero} da gestação do Arthur"
+              loading="lazy"
+              onclick="abrirModal('${arquivo.caminho}')"
+            >
+          `;
+        } else {
+          const tipoVideo =
+            arquivo.extensao === "webm"
+              ? "video/webm"
+              : arquivo.extensao === "mov"
+                ? "video/quicktime"
+                : "video/mp4";
+
+          card.innerHTML = `
+            <span class="midia-numero">
+              Momento ${numero}
+            </span>
+
+            <video
+              controls
+              playsinline
+              preload="metadata"
+            >
+              <source
+                src="${arquivo.caminho}"
+                type="${tipoVideo}"
+              >
+
+              Seu navegador não consegue reproduzir este vídeo.
+            </video>
+          `;
+        }
+      }
+    }
+
+    carregarGaleria();
+
+    function abrirModal(caminhoImagem) {
+      const modal =
+        document.getElementById("modalFoto");
+
+      const imagem =
+        document.getElementById("modalImagem");
+
+      imagem.src = caminhoImagem;
+
+      modal.classList.add("aberto");
+
+      document.body.style.overflow = "hidden";
+    }
+
+    function fecharModal(evento) {
+      if (
+        evento &&
+        evento.target.id !== "modalFoto"
+      ) {
+        return;
+      }
+
+      const modal =
+        document.getElementById("modalFoto");
+
+      modal.classList.remove("aberto");
+
+      document.body.style.overflow = "";
+    }
+
+    document.addEventListener(
+      "keydown",
+      evento => {
+        if (evento.key === "Escape") {
+          fecharModal();
+        }
+      }
+    );
 
     function copiarPix() {
       const chavePix = "023.596.472-70";
@@ -1383,7 +1598,7 @@
         botao.textContent = "Chave copiada! ✓";
 
         mensagem.textContent =
-          "A chave Pix foi copiada para a área de transferência.";
+          "A chave Pix foi copiada.";
 
         setTimeout(() => {
           botao.textContent = "Copiar chave Pix";
@@ -1391,29 +1606,27 @@
         }, 3500);
       }
 
-      function copiarDeFormaAlternativa() {
-        const campoTemporario =
+      function copiarAlternativo() {
+        const campo =
           document.createElement("textarea");
 
-        campoTemporario.value = chavePix;
-        campoTemporario.style.position = "fixed";
-        campoTemporario.style.opacity = "0";
+        campo.value = chavePix;
+        campo.style.position = "fixed";
+        campo.style.opacity = "0";
 
-        document.body.appendChild(campoTemporario);
+        document.body.appendChild(campo);
 
-        campoTemporario.focus();
-        campoTemporario.select();
+        campo.select();
 
         try {
           document.execCommand("copy");
           mostrarSucesso();
-        } catch (erro) {
+        } catch {
           mensagem.textContent =
-            "Não foi possível copiar automaticamente. Chave: " +
-            chavePix;
+            "Chave Pix: " + chavePix;
         }
 
-        document.body.removeChild(campoTemporario);
+        campo.remove();
       }
 
       if (
@@ -1423,9 +1636,9 @@
         navigator.clipboard
           .writeText(chavePix)
           .then(mostrarSucesso)
-          .catch(copiarDeFormaAlternativa);
+          .catch(copiarAlternativo);
       } else {
-        copiarDeFormaAlternativa();
+        copiarAlternativo();
       }
     }
   </script>
