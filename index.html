@@ -91,6 +91,10 @@
       font-family: inherit;
     }
 
+    [hidden] {
+      display: none !important;
+    }
+
     .container {
       width: min(1100px, calc(100% - 32px));
       margin: 0 auto;
@@ -808,17 +812,18 @@
       font-weight: 700;
     }
 
-    .aviso-quantidade {
-      margin: 8px 0 0;
+    .aviso-familia {
+      margin: 18px 0 0;
+      padding: 16px;
+      border: 1px solid rgba(63, 137, 170, 0.18);
+      border-radius: 14px;
       color: var(--texto-claro);
+      background: var(--azul-muito-claro);
       font-size: 13px;
+      line-height: 1.55;
     }
 
-    [hidden] {
-      display: none !important;
-    }
-
-    /* Contato do criador */
+    /* Contato */
 
     .contato-criador {
       padding: 48px;
@@ -1097,15 +1102,20 @@
 
     </section>
 
-    <!-- Contagem regressiva -->
+    <!-- Contagem -->
 
     <section class="container">
 
       <div class="contagem-secao">
 
         <div>
-          <span class="etiqueta">Está chegando</span>
-          <h2>Contagem regressiva</h2>
+          <span class="etiqueta">
+            Está chegando
+          </span>
+
+          <h2>
+            Contagem regressiva
+          </h2>
 
           <p>
             Estamos ansiosos para celebrar esse momento com você.
@@ -1376,7 +1386,7 @@
           </span>
 
           <strong>
-            Até 30 de agosto de 2026
+            Até 10 de setembro de 2026
           </strong>
 
           <small>
@@ -1403,6 +1413,7 @@
           </label>
 
           <select id="presenca">
+
             <option value="">
               Selecione uma opção
             </option>
@@ -1414,51 +1425,86 @@
             <option value="nao">
               Não poderei comparecer
             </option>
+
           </select>
 
           <div
-            id="blocoQuantidade"
+            id="blocoFamilia"
             hidden
           >
 
-            <label for="quantidadePessoas">
-              Quantas pessoas irão?
+            <label for="grupoConvidado">
+              Quem irá com você?
             </label>
 
-            <select id="quantidadePessoas">
+            <select id="grupoConvidado">
 
               <option value="">
-                Selecione a quantidade
+                Selecione uma opção
               </option>
 
-              <option value="1">
-                1 pessoa — somente eu
+              <option value="somente-eu">
+                Somente eu
               </option>
 
-              <option value="2">
-                2 pessoas — eu e 1 acompanhante
+              <option value="conjuge">
+                Eu e meu cônjuge/companheiro(a)
               </option>
 
-              <option value="3">
-                3 pessoas — eu e 2 acompanhantes
+              <option value="filhos">
+                Eu e meu(s) filho(s)
               </option>
 
-              <option value="4">
-                4 pessoas — eu e 3 acompanhantes
-              </option>
-
-              <option value="5">
-                5 pessoas
-              </option>
-
-              <option value="6">
-                6 pessoas
+              <option value="familia">
+                Eu, meu cônjuge/companheiro(a) e meu(s) filho(s)
               </option>
 
             </select>
 
-            <p class="aviso-quantidade">
-              Informe o total contando com você.
+            <div
+              id="blocoFilhos"
+              hidden
+            >
+
+              <label for="quantidadeFilhos">
+                Quantos filhos irão?
+              </label>
+
+              <select id="quantidadeFilhos">
+
+                <option value="">
+                  Selecione a quantidade
+                </option>
+
+                <option value="1">
+                  1 filho
+                </option>
+
+                <option value="2">
+                  2 filhos
+                </option>
+
+                <option value="3">
+                  3 filhos
+                </option>
+
+                <option value="4">
+                  4 filhos
+                </option>
+
+                <option value="5">
+                  5 filhos
+                </option>
+
+              </select>
+
+            </div>
+
+            <p class="aviso-familia">
+              A confirmação considera apenas você e os familiares
+              incluídos no convite: cônjuge ou companheiro(a) e filhos.
+              Para incluir outra pessoa, consulte os responsáveis
+              pelo evento.
             </p>
 
           </div>
@@ -1637,12 +1683,6 @@
 
     /*
       GALERIA AUTOMÁTICA
-
-      Procura por:
-      sequencia1 até sequencia6
-
-      Extensões:
-      jpg, jpeg, png, webp, mp4 e webm
     */
 
     const quantidadeArquivos = 6;
@@ -1900,11 +1940,17 @@
     const campoPresenca =
       document.getElementById("presenca");
 
-    const blocoQuantidade =
-      document.getElementById("blocoQuantidade");
+    const blocoFamilia =
+      document.getElementById("blocoFamilia");
 
-    const campoQuantidade =
-      document.getElementById("quantidadePessoas");
+    const campoGrupo =
+      document.getElementById("grupoConvidado");
+
+    const blocoFilhos =
+      document.getElementById("blocoFilhos");
+
+    const campoQuantidadeFilhos =
+      document.getElementById("quantidadeFilhos");
 
     campoPresenca.addEventListener(
       "change",
@@ -1912,11 +1958,31 @@
         const vaiComparecer =
           campoPresenca.value === "sim";
 
-        blocoQuantidade.hidden =
+        blocoFamilia.hidden =
           !vaiComparecer;
 
         if (!vaiComparecer) {
-          campoQuantidade.value = "";
+          campoGrupo.value = "";
+          campoQuantidadeFilhos.value = "";
+          blocoFilhos.hidden = true;
+        }
+
+        limparErroConfirmacao();
+      }
+    );
+
+    campoGrupo.addEventListener(
+      "change",
+      () => {
+        const possuiFilhos =
+          campoGrupo.value === "filhos" ||
+          campoGrupo.value === "familia";
+
+        blocoFilhos.hidden =
+          !possuiFilhos;
+
+        if (!possuiFilhos) {
+          campoQuantidadeFilhos.value = "";
         }
 
         limparErroConfirmacao();
@@ -1945,8 +2011,11 @@
       const presenca =
         campoPresenca.value;
 
-      const quantidade =
-        campoQuantidade.value;
+      const grupo =
+        campoGrupo.value;
+
+      const quantidadeFilhos =
+        campoQuantidadeFilhos.value;
 
       limparErroConfirmacao();
 
@@ -1974,37 +2043,91 @@
 
       if (
         presenca === "sim" &&
-        !quantidade
+        !grupo
       ) {
         mostrarErroConfirmacao(
-          "Informe quantas pessoas irão ao evento."
+          "Informe quem irá com você."
         );
 
-        campoQuantidade.focus();
+        campoGrupo.focus();
+
+        return;
+      }
+
+      const grupoPossuiFilhos =
+        grupo === "filhos" ||
+        grupo === "familia";
+
+      if (
+        presenca === "sim" &&
+        grupoPossuiFilhos &&
+        !quantidadeFilhos
+      ) {
+        mostrarErroConfirmacao(
+          "Informe quantos filhos irão."
+        );
+
+        campoQuantidadeFilhos.focus();
 
         return;
       }
 
       let mensagemWhatsApp = "";
 
-      if (presenca === "sim") {
-        const numeroPessoas =
-          Number(quantidade);
-
-        const descricaoQuantidade =
-          numeroPessoas === 1
-            ? "Irei sozinho(a)."
-            : `Iremos em ${numeroPessoas} pessoas, contando comigo.`;
-
-        mensagemWhatsApp =
-          `Olá! Meu nome é ${nome}. ` +
-          `Confirmo minha presença no chá de bebê do Arthur. ` +
-          descricaoQuantidade;
-      } else {
+      if (presenca === "nao") {
         mensagemWhatsApp =
           `Olá! Meu nome é ${nome}. ` +
           `Infelizmente não poderei comparecer ao chá de bebê do Arthur. ` +
           `Desejo que seja um momento muito especial!`;
+      } else {
+        let descricaoFamilia = "";
+
+        switch (grupo) {
+          case "somente-eu":
+            descricaoFamilia =
+              "Irei sozinho(a). Total: 1 pessoa.";
+            break;
+
+          case "conjuge":
+            descricaoFamilia =
+              "Irei com meu cônjuge/companheiro(a). Total: 2 pessoas.";
+            break;
+
+          case "filhos": {
+            const filhos =
+              Number(quantidadeFilhos);
+
+            const total =
+              1 + filhos;
+
+            descricaoFamilia =
+              `Irei com ${filhos} ` +
+              `${filhos === 1 ? "filho" : "filhos"}. ` +
+              `Total: ${total} pessoas.`;
+
+            break;
+          }
+
+          case "familia": {
+            const filhos =
+              Number(quantidadeFilhos);
+
+            const total =
+              2 + filhos;
+
+            descricaoFamilia =
+              `Irei com meu cônjuge/companheiro(a) e ` +
+              `${filhos} ${filhos === 1 ? "filho" : "filhos"}. ` +
+              `Total: ${total} pessoas.`;
+
+            break;
+          }
+        }
+
+        mensagemWhatsApp =
+          `Olá! Meu nome é ${nome}. ` +
+          `Confirmo minha presença no chá de bebê do Arthur. ` +
+          descricaoFamilia;
       }
 
       const numeroWhatsApp =
