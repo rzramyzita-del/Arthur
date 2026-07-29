@@ -40,6 +40,7 @@
       --texto: #31566a;
       --texto-claro: #6c8490;
       --verde-pix: #32a878;
+      --vermelho: #b64040;
       --sombra: 0 20px 50px rgba(48, 105, 134, 0.16);
     }
 
@@ -71,6 +72,10 @@
       line-height: 1.6;
     }
 
+    body.modal-aberto {
+      overflow: hidden;
+    }
+
     img,
     video {
       max-width: 100%;
@@ -80,7 +85,9 @@
       color: inherit;
     }
 
-    button {
+    button,
+    input,
+    select {
       font-family: inherit;
     }
 
@@ -225,7 +232,7 @@
       box-shadow: var(--sombra);
     }
 
-    /* Detalhes */
+    /* Cabeçalhos */
 
     .cabecalho-secao {
       max-width: 680px;
@@ -238,10 +245,12 @@
       text-align: center;
     }
 
-    .cabecalho-secao > p {
+    .cabecalho-secao p {
       color: var(--texto-claro);
       font-size: 18px;
     }
+
+    /* Detalhes */
 
     .detalhes {
       display: grid;
@@ -347,7 +356,7 @@
       text-transform: uppercase;
     }
 
-    /* Fotos e vídeos */
+    /* Jornada */
 
     .jornada-card {
       padding: 55px;
@@ -379,12 +388,7 @@
       overflow: hidden;
       border: 8px solid white;
       border-radius: 25px;
-      background:
-        linear-gradient(
-          145deg,
-          var(--azul-muito-claro),
-          white
-        );
+      background: var(--azul-muito-claro);
       box-shadow: 0 18px 42px rgba(48, 105, 134, 0.13);
     }
 
@@ -406,15 +410,6 @@
       transform: scale(1.025);
     }
 
-    .midia-carregando {
-      min-height: 300px;
-      padding: 35px;
-      display: grid;
-      place-items: center;
-      color: var(--texto-claro);
-      text-align: center;
-    }
-
     .midia-numero {
       position: absolute;
       top: 14px;
@@ -429,6 +424,15 @@
       backdrop-filter: blur(8px);
     }
 
+    .midia-carregando {
+      min-height: 300px;
+      padding: 35px;
+      display: grid;
+      place-items: center;
+      color: var(--texto-claro);
+      text-align: center;
+    }
+
     .galeria-aviso {
       max-width: 720px;
       margin: 30px auto 0;
@@ -441,7 +445,7 @@
       font-size: 14px;
     }
 
-    /* Modal de fotos */
+    /* Modal */
 
     .modal {
       position: fixed;
@@ -562,7 +566,11 @@
       padding: 55px;
       border: 1px solid rgba(63, 137, 170, 0.16);
       border-radius: 32px;
-      background: linear-gradient(145deg, #ffffff, #f4fbfe);
+      background: linear-gradient(
+        145deg,
+        #ffffff,
+        #f4fbfe
+      );
       box-shadow: var(--sombra);
     }
 
@@ -575,44 +583,6 @@
     .lista-apresentacao p {
       color: var(--texto-claro);
       font-size: 18px;
-    }
-
-    .lista-avisos {
-      margin: 28px auto 36px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 14px;
-    }
-
-    .lista-aviso {
-      min-height: 52px;
-      padding: 12px 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border: 1px solid rgba(63, 137, 170, 0.16);
-      border-radius: 16px;
-      color: var(--azul-escuro);
-      background: white;
-      font-size: 15px;
-      font-weight: 700;
-      box-shadow: 0 10px 26px rgba(48, 105, 134, 0.08);
-    }
-
-    .lista-aviso-icone {
-      width: 30px;
-      height: 30px;
-      flex-shrink: 0;
-      display: grid;
-      place-items: center;
-      border-radius: 9px;
-      color: white;
-      background: var(--azul);
-    }
-
-    .lista-aviso-sugestao .lista-aviso-icone {
-      background: #e6a452;
     }
 
     .lista-imagem-container {
@@ -761,7 +731,7 @@
     }
 
     .prazo-confirmacao {
-      max-width: 480px;
+      max-width: 520px;
       margin: 0 auto 28px;
       padding: 22px;
       border: 1px solid rgba(63, 137, 170, 0.2);
@@ -792,6 +762,62 @@
       color: var(--texto-claro);
     }
 
+    .form-confirmacao {
+      max-width: 560px;
+      margin: 30px auto 0;
+      text-align: left;
+    }
+
+    .form-confirmacao label {
+      display: block;
+      margin: 18px 0 7px;
+      color: var(--azul-escuro);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .form-confirmacao input,
+    .form-confirmacao select {
+      width: 100%;
+      min-height: 52px;
+      padding: 0 16px;
+      border: 1px solid rgba(63, 137, 170, 0.25);
+      border-radius: 14px;
+      color: var(--texto);
+      background: white;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .form-confirmacao input:focus,
+    .form-confirmacao select:focus {
+      border-color: var(--azul);
+      box-shadow: 0 0 0 4px rgba(63, 137, 170, 0.1);
+    }
+
+    .form-confirmacao .botao {
+      width: 100%;
+      margin-top: 24px;
+    }
+
+    .erro-confirmacao {
+      min-height: 24px;
+      margin: 14px 0 0;
+      color: var(--vermelho);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .aviso-quantidade {
+      margin: 8px 0 0;
+      color: var(--texto-claro);
+      font-size: 13px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
     /* Contato do criador */
 
     .contato-criador {
@@ -799,17 +825,11 @@
       border: 1px solid rgba(63, 137, 170, 0.16);
       border-radius: 30px;
       text-align: center;
-      background:
-        radial-gradient(
-          circle at top right,
-          rgba(220, 238, 247, 0.85),
-          transparent 42%
-        ),
-        linear-gradient(
-          145deg,
-          #ffffff,
-          #f4fbfe
-        );
+      background: linear-gradient(
+        145deg,
+        #ffffff,
+        #f4fbfe
+      );
       box-shadow: 0 18px 45px rgba(48, 105, 134, 0.1);
     }
 
@@ -851,7 +871,7 @@
     }
 
     footer {
-      padding: 10px 20px 45px;
+      padding: 30px 20px 45px;
       text-align: center;
       color: var(--texto-claro);
     }
@@ -884,10 +904,7 @@
         justify-content: center;
       }
 
-      .detalhes {
-        grid-template-columns: 1fr;
-      }
-
+      .detalhes,
       .galeria {
         grid-template-columns: 1fr;
       }
@@ -941,14 +958,6 @@
         min-height: 220px;
       }
 
-      .lista-avisos {
-        flex-direction: column;
-      }
-
-      .lista-aviso {
-        width: 100%;
-      }
-
       .lista-imagem-container {
         padding: 6px;
       }
@@ -960,6 +969,10 @@
 
       .contato-dados {
         grid-template-columns: 1fr;
+      }
+
+      .prazo-confirmacao strong {
+        font-size: 21px;
       }
     }
   </style>
@@ -1024,7 +1037,10 @@
 
     <!-- Detalhes -->
 
-    <section id="detalhes" class="container secao">
+    <section
+      id="detalhes"
+      class="container secao"
+    >
 
       <div class="cabecalho-secao">
 
@@ -1081,7 +1097,7 @@
 
     </section>
 
-    <!-- Contagem -->
+    <!-- Contagem regressiva -->
 
     <section class="container">
 
@@ -1089,10 +1105,7 @@
 
         <div>
           <span class="etiqueta">Está chegando</span>
-
-          <h2>
-            Contagem regressiva
-          </h2>
+          <h2>Contagem regressiva</h2>
 
           <p>
             Estamos ansiosos para celebrar esse momento com você.
@@ -1176,7 +1189,7 @@
           <img
             class="imagem-gamer"
             src="bebegamer.png"
-            alt="Ilustração do Arthur como um bebê gamer de computador"
+            alt="Ilustração do Arthur como bebê gamer de computador"
             loading="lazy"
           >
 
@@ -1233,26 +1246,12 @@
 
         </div>
 
-        <div class="lista-avisos">
-
-          <div class="lista-aviso lista-aviso-sugestao">
-            <span class="lista-aviso-icone">💡</span>
-            <span>A lista é apenas uma sugestão</span>
-          </div>
-
-          <div class="lista-aviso">
-            <span class="lista-aviso-icone">✓</span>
-            <span>Os itens marcados nós já temos</span>
-          </div>
-
-        </div>
-
         <div class="lista-imagem-container">
 
           <img
             class="lista-imagem"
             src="listapresentes.png"
-            alt="Lista de presentes para o Arthur"
+            alt="Lista de sugestões de presentes para o Arthur"
             loading="lazy"
           >
 
@@ -1367,11 +1366,14 @@
 
         <p>
           Para conseguirmos organizar tudo com muito carinho,
-          pedimos que confirme sua presença pelo WhatsApp.
+          pedimos que confirme sua presença dentro do prazo.
         </p>
 
         <div class="prazo-confirmacao">
-          <span>Prazo para confirmação</span>
+
+          <span>
+            Prazo para confirmação
+          </span>
 
           <strong>
             Até 30 de agosto de 2026
@@ -1380,29 +1382,115 @@
           <small>
             A confirmação dentro do prazo nos ajuda na organização.
           </small>
+
         </div>
 
-        <a
-          class="botao botao-principal"
-          href="https://wa.me/5569992012295?text=Olá!%20Confirmo%20minha%20presença%20no%20chá%20de%20bebê%20do%20Arthur."
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Confirmar pelo WhatsApp
-        </a>
+        <div class="form-confirmacao">
+
+          <label for="nomeConvidado">
+            Seu nome
+          </label>
+
+          <input
+            id="nomeConvidado"
+            type="text"
+            placeholder="Digite seu nome"
+            autocomplete="name"
+          >
+
+          <label for="presenca">
+            Você irá ao chá de bebê?
+          </label>
+
+          <select id="presenca">
+            <option value="">
+              Selecione uma opção
+            </option>
+
+            <option value="sim">
+              Sim, estarei presente
+            </option>
+
+            <option value="nao">
+              Não poderei comparecer
+            </option>
+          </select>
+
+          <div
+            id="blocoQuantidade"
+            hidden
+          >
+
+            <label for="quantidadePessoas">
+              Quantas pessoas irão?
+            </label>
+
+            <select id="quantidadePessoas">
+
+              <option value="">
+                Selecione a quantidade
+              </option>
+
+              <option value="1">
+                1 pessoa — somente eu
+              </option>
+
+              <option value="2">
+                2 pessoas — eu e 1 acompanhante
+              </option>
+
+              <option value="3">
+                3 pessoas — eu e 2 acompanhantes
+              </option>
+
+              <option value="4">
+                4 pessoas — eu e 3 acompanhantes
+              </option>
+
+              <option value="5">
+                5 pessoas
+              </option>
+
+              <option value="6">
+                6 pessoas
+              </option>
+
+            </select>
+
+            <p class="aviso-quantidade">
+              Informe o total contando com você.
+            </p>
+
+          </div>
+
+          <p
+            id="erroConfirmacao"
+            class="erro-confirmacao"
+            aria-live="polite"
+          ></p>
+
+          <button
+            class="botao botao-principal"
+            type="button"
+            onclick="confirmarPresenca()"
+          >
+            Enviar confirmação pelo WhatsApp
+          </button>
+
+        </div>
 
       </div>
 
     </section>
 
-    <!-- Divulgação do criador -->
+    <!-- Contato do criador -->
 
     <section class="container secao">
 
       <div class="contato-criador">
 
         <span class="etiqueta">
-          Gostou deste convite?
+          Gostou deste site?
         </span>
 
         <h2>
@@ -1411,8 +1499,8 @@
 
         <p>
           Este site foi desenvolvido com carinho pelo pai do Arthur.
-          Para convites digitais, páginas comemorativas ou projetos
-          personalizados, entre em contato comigo.
+          Para convites digitais, páginas comemorativas ou algo
+          personalizado, entre em contato.
         </p>
 
         <div class="contato-dados">
@@ -1431,7 +1519,7 @@
 
         <a
           class="botao botao-principal"
-          href="https://wa.me/5569999629789?text=Olá,%20Allan!%20Vi%20o%20site%20do%20chá%20de%20bebê%20do%20Arthur%20e%20gostaria%20de%20conversar%20sobre%20um%20site%20parecido."
+          href="https://wa.me/556999629789?text=Olá,%20Allan!%20Vi%20o%20site%20do%20chá%20de%20bebê%20do%20Arthur%20e%20gostaria%20de%20conversar%20sobre%20um%20site%20parecido."
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -1445,9 +1533,11 @@
   </main>
 
   <footer>
+
     <p>
       Feito com carinho para celebrar a chegada do Arthur 💙
     </p>
+
   </footer>
 
   <!-- Modal das fotos -->
@@ -1455,7 +1545,7 @@
   <div
     id="modalFoto"
     class="modal"
-    onclick="fecharModal(event)"
+    onclick="fecharModalAoClicarFora(event)"
   >
 
     <button
@@ -1477,7 +1567,7 @@
 
   <script>
     /*
-      Contagem regressiva
+      CONTAGEM REGRESSIVA
     */
 
     const dataEvento = new Date(
@@ -1490,38 +1580,55 @@
 
     function atualizarContagem() {
       const diferenca =
-        dataEvento.getTime() - new Date().getTime();
+        dataEvento.getTime() - Date.now();
 
-      const elementos = {
-        dias: document.getElementById("dias"),
-        horas: document.getElementById("horas"),
-        minutos: document.getElementById("minutos"),
-        segundos: document.getElementById("segundos")
-      };
+      const diasElemento =
+        document.getElementById("dias");
+
+      const horasElemento =
+        document.getElementById("horas");
+
+      const minutosElemento =
+        document.getElementById("minutos");
+
+      const segundosElemento =
+        document.getElementById("segundos");
 
       if (diferenca <= 0) {
-        Object.values(elementos).forEach(
-          elemento => elemento.textContent = "00"
-        );
-
+        diasElemento.textContent = "00";
+        horasElemento.textContent = "00";
+        minutosElemento.textContent = "00";
+        segundosElemento.textContent = "00";
         return;
       }
 
-      elementos.dias.textContent = adicionarZero(
-        Math.floor(diferenca / (1000 * 60 * 60 * 24))
+      const dias = Math.floor(
+        diferenca / (1000 * 60 * 60 * 24)
       );
 
-      elementos.horas.textContent = adicionarZero(
-        Math.floor((diferenca / (1000 * 60 * 60)) % 24)
+      const horas = Math.floor(
+        (diferenca / (1000 * 60 * 60)) % 24
       );
 
-      elementos.minutos.textContent = adicionarZero(
-        Math.floor((diferenca / (1000 * 60)) % 60)
+      const minutos = Math.floor(
+        (diferenca / (1000 * 60)) % 60
       );
 
-      elementos.segundos.textContent = adicionarZero(
-        Math.floor((diferenca / 1000) % 60)
+      const segundos = Math.floor(
+        (diferenca / 1000) % 60
       );
+
+      diasElemento.textContent =
+        adicionarZero(dias);
+
+      horasElemento.textContent =
+        adicionarZero(horas);
+
+      minutosElemento.textContent =
+        adicionarZero(minutos);
+
+      segundosElemento.textContent =
+        adicionarZero(segundos);
     }
 
     atualizarContagem();
@@ -1529,15 +1636,13 @@
     setInterval(atualizarContagem, 1000);
 
     /*
-      Galeria automática
+      GALERIA AUTOMÁTICA
 
-      Procura arquivos de sequencia1 até sequencia6.
+      Procura por:
+      sequencia1 até sequencia6
 
-      Imagens:
-      jpg, jpeg, png e webp
-
-      Vídeos:
-      mp4, webm e mov
+      Extensões:
+      jpg, jpeg, png, webp, mp4 e webm
     */
 
     const quantidadeArquivos = 6;
@@ -1551,8 +1656,7 @@
 
     const extensoesVideo = [
       "mp4",
-      "webm",
-      "mov"
+      "webm"
     ];
 
     const galeria =
@@ -1568,27 +1672,30 @@
     }
 
     async function encontrarArquivo(numero) {
-      const nomeBase = "sequencia" + numero;
+      const nomeBase =
+        "sequencia" + numero;
 
       for (const extensao of extensoesImagem) {
-        const caminho = nomeBase + "." + extensao;
+        const caminho =
+          nomeBase + "." + extensao;
 
         if (await testarArquivo(caminho)) {
           return {
             tipo: "imagem",
-            caminho: caminho
+            caminho
           };
         }
       }
 
       for (const extensao of extensoesVideo) {
-        const caminho = nomeBase + "." + extensao;
+        const caminho =
+          nomeBase + "." + extensao;
 
         if (await testarArquivo(caminho)) {
           return {
             tipo: "video",
-            caminho: caminho,
-            extensao: extensao
+            caminho,
+            extensao
           };
         }
       }
@@ -1630,7 +1737,6 @@
 
             <div class="midia-carregando">
               O arquivo sequencia${numero} não foi encontrado.
-              Confira o nome e a extensão no GitHub.
             </div>
           `;
 
@@ -1654,9 +1760,7 @@
           const tipoVideo =
             arquivo.extensao === "webm"
               ? "video/webm"
-              : arquivo.extensao === "mov"
-                ? "video/quicktime"
-                : "video/mp4";
+              : "video/mp4";
 
           card.innerHTML = `
             <span class="midia-numero">
@@ -1683,7 +1787,7 @@
     carregarGaleria();
 
     /*
-      Modal das imagens
+      MODAL DAS FOTOS
     */
 
     function abrirModal(caminhoImagem) {
@@ -1697,23 +1801,22 @@
 
       modal.classList.add("aberto");
 
-      document.body.style.overflow = "hidden";
+      document.body.classList.add("modal-aberto");
     }
 
-    function fecharModal(evento) {
-      if (
-        evento &&
-        evento.target.id !== "modalFoto"
-      ) {
-        return;
-      }
-
+    function fecharModal() {
       const modal =
         document.getElementById("modalFoto");
 
       modal.classList.remove("aberto");
 
-      document.body.style.overflow = "";
+      document.body.classList.remove("modal-aberto");
+    }
+
+    function fecharModalAoClicarFora(evento) {
+      if (evento.target.id === "modalFoto") {
+        fecharModal();
+      }
     }
 
     document.addEventListener(
@@ -1726,7 +1829,7 @@
     );
 
     /*
-      Copiar chave Pix
+      COPIAR PIX
     */
 
     function copiarPix() {
@@ -1739,13 +1842,16 @@
         document.getElementById("mensagemCopia");
 
       function mostrarSucesso() {
-        botao.textContent = "Chave copiada! ✓";
+        botao.textContent =
+          "Chave copiada! ✓";
 
         mensagem.textContent =
           "A chave Pix foi copiada.";
 
         setTimeout(() => {
-          botao.textContent = "Copiar chave Pix";
+          botao.textContent =
+            "Copiar chave Pix";
+
           mensagem.textContent = "";
         }, 3500);
       }
@@ -1760,6 +1866,7 @@
 
         document.body.appendChild(campo);
 
+        campo.focus();
         campo.select();
 
         try {
@@ -1784,6 +1891,134 @@
       } else {
         copiarAlternativo();
       }
+    }
+
+    /*
+      CONFIRMAÇÃO DE PRESENÇA
+    */
+
+    const campoPresenca =
+      document.getElementById("presenca");
+
+    const blocoQuantidade =
+      document.getElementById("blocoQuantidade");
+
+    const campoQuantidade =
+      document.getElementById("quantidadePessoas");
+
+    campoPresenca.addEventListener(
+      "change",
+      () => {
+        const vaiComparecer =
+          campoPresenca.value === "sim";
+
+        blocoQuantidade.hidden =
+          !vaiComparecer;
+
+        if (!vaiComparecer) {
+          campoQuantidade.value = "";
+        }
+
+        limparErroConfirmacao();
+      }
+    );
+
+    function limparErroConfirmacao() {
+      document.getElementById(
+        "erroConfirmacao"
+      ).textContent = "";
+    }
+
+    function mostrarErroConfirmacao(mensagem) {
+      document.getElementById(
+        "erroConfirmacao"
+      ).textContent = mensagem;
+    }
+
+    function confirmarPresenca() {
+      const nome =
+        document
+          .getElementById("nomeConvidado")
+          .value
+          .trim();
+
+      const presenca =
+        campoPresenca.value;
+
+      const quantidade =
+        campoQuantidade.value;
+
+      limparErroConfirmacao();
+
+      if (!nome) {
+        mostrarErroConfirmacao(
+          "Por favor, informe seu nome."
+        );
+
+        document
+          .getElementById("nomeConvidado")
+          .focus();
+
+        return;
+      }
+
+      if (!presenca) {
+        mostrarErroConfirmacao(
+          "Informe se você poderá comparecer."
+        );
+
+        campoPresenca.focus();
+
+        return;
+      }
+
+      if (
+        presenca === "sim" &&
+        !quantidade
+      ) {
+        mostrarErroConfirmacao(
+          "Informe quantas pessoas irão ao evento."
+        );
+
+        campoQuantidade.focus();
+
+        return;
+      }
+
+      let mensagemWhatsApp = "";
+
+      if (presenca === "sim") {
+        const numeroPessoas =
+          Number(quantidade);
+
+        const descricaoQuantidade =
+          numeroPessoas === 1
+            ? "Irei sozinho(a)."
+            : `Iremos em ${numeroPessoas} pessoas, contando comigo.`;
+
+        mensagemWhatsApp =
+          `Olá! Meu nome é ${nome}. ` +
+          `Confirmo minha presença no chá de bebê do Arthur. ` +
+          descricaoQuantidade;
+      } else {
+        mensagemWhatsApp =
+          `Olá! Meu nome é ${nome}. ` +
+          `Infelizmente não poderei comparecer ao chá de bebê do Arthur. ` +
+          `Desejo que seja um momento muito especial!`;
+      }
+
+      const numeroWhatsApp =
+        "5569992012295";
+
+      const linkWhatsApp =
+        `https://wa.me/${numeroWhatsApp}?text=` +
+        encodeURIComponent(mensagemWhatsApp);
+
+      window.open(
+        linkWhatsApp,
+        "_blank",
+        "noopener,noreferrer"
+      );
     }
   </script>
 
